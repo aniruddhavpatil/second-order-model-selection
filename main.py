@@ -8,15 +8,15 @@ import time
 
 # Reads the data present in the folder (.csv files only)
 def read_data():
-    curr_dir = os.getcwd()
-    dir_files = os.listdir(curr_dir)
-
+    # curr_dir = os.getcwd()
+    data_dir = os.path.join(os.getcwd(), 'data')
+    dir_files = os.listdir(data_dir)
     data = {}
     for file in dir_files:
         if file.endswith('.csv'):
-            with open(file, 'r') as f:
+            with open(os.path.join(data_dir,file), 'r') as f:
                 file_key = file.split('.')[0]
-                data[file_key] = np.genfromtxt(file, delimiter=',', dtype='float32')
+                data[file_key] = np.genfromtxt(f, delimiter=',', dtype='float32')
 
     return data
 
